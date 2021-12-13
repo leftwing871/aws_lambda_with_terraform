@@ -72,6 +72,8 @@ jobs:
           Version=$(aws lambda publish-version \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} | jq  '.Version')
 
+          echo $Version
+
 
       # Update alias
       - name: Update alias
