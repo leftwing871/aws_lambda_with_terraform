@@ -48,6 +48,7 @@ jobs:
           pip install -r requirements.txt -t packages/
           ls -a packages
 
+
       # Make a Zip File
       - name: Make a Zip File
         working-directory: ./${{ env.AWS_LAMBDA_FUNCTION_NAME }}
@@ -67,6 +68,9 @@ jobs:
         run: |
           aws lambda publish-version \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} 
+          sudo apt-get update
+          sudo apt install jq -y
+
 
 
       # Remove a Zip File
