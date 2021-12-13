@@ -76,7 +76,7 @@ jobs:
 
           aws lambda update-alias \
           --function-name $env.AWS_LAMBDA_FUNCTION_NAME \
-          --function-version $Version \
+          --function-version $((Version)) \
           --name prod
 
       # Remove a Zip File
