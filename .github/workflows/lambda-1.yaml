@@ -73,7 +73,7 @@ jobs:
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} | jq  '.FunctionArn')
           echo $FunctionArn
 
-          FunctionVersion=$FunctionArn | cut -d ':' -f2
+          FunctionVersion=${FunctionArn#*:}
 
           echo $FunctionVersion
 
