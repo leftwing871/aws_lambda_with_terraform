@@ -66,10 +66,14 @@ jobs:
       - name: Create a new function version
         working-directory: ./${{ env.AWS_LAMBDA_FUNCTION_NAME }}
         run: |
-          aws lambda publish-version \
-          --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} 
           sudo apt-get update
           sudo apt install jq -y
+
+          FunctionArn=$(aws lambda publish-version \
+          --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} | jq  '.FunctionArn')
+
+          echo $FunctionArn
+
 
 
 
