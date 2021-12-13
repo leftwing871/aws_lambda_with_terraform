@@ -72,13 +72,12 @@ jobs:
           FunctionArn=$(aws lambda publish-version \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} | jq  '.FunctionArn')
 
+          FunctionVersion = $FunctionArn | cut -d ':' -f2
+
           aws lambda update-alias \
           --function-name $env.AWS_LAMBDA_FUNCTION_NAME \
-          --function-version $FunctionArn | cut -d ':' -f2 \
-          --name prod 
-
-
-
+          --function-version $FunctionVersion \
+          --name prod
 
       # Remove a Zip File
       - name: Remove a Zip File
