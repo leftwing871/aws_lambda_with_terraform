@@ -76,7 +76,7 @@ jobs:
 
           aws lambda update-alias \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
-          --function-version 19 \
+          --function-version $Version \
           --name prod
 
 
