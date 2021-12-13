@@ -74,6 +74,9 @@ jobs:
 
           echo $Version
           VersionNumber = $((Version))
+          echo $VersionNumber
+
+          echo ${{ env.AWS_LAMBDA_FUNCTION_NAME }}
 
           aws lambda update-alias \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
