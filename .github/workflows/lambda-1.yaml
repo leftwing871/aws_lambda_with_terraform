@@ -75,7 +75,7 @@ jobs:
 
           FunctionVersion=$FunctionArn | cut -d ':' -f2
 
-          echo @FunctionVersion
+          echo $FunctionVersion
 
           aws lambda update-alias \
           --function-name $env.AWS_LAMBDA_FUNCTION_NAME \
