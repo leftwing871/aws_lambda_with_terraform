@@ -60,6 +60,14 @@ jobs:
           aws lambda update-function-code \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
           --zip-file fileb://${{ env.AWS_LAMBDA_FUNCTION_NAME }}.zip
+      
+      # Create a new function version
+      - name: Create a new function version
+        working-directory: ./${{ env.AWS_LAMBDA_FUNCTION_NAME }}
+        run: |
+          aws lambda publish-version \
+          --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} 
+
 
       # Remove a Zip File
       - name: Remove a Zip File
