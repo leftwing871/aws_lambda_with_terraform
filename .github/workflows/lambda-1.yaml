@@ -47,6 +47,8 @@ jobs:
           mkdir packages
           pip install -r requirements.txt -t packages/
           ls -a packages
+          #sudo apt-get update
+          #sudo apt install jq -y
 
 
       # Make a Zip File
@@ -66,15 +68,12 @@ jobs:
       - name: Create a new function version
         working-directory: ./${{ env.AWS_LAMBDA_FUNCTION_NAME }}
         run: |
-          #sudo apt-get update
-          #sudo apt install jq -y
-
           Version=$(aws lambda publish-version \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} | jq '.Version')
 
           aws lambda update-alias \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
-          --function-version $Version \
+          --function-version ${Version//[^0-9]} \
           --name prod
 
 
