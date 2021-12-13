@@ -79,6 +79,8 @@ jobs:
       - name: Update alias
         working-directory: ./${{ env.AWS_LAMBDA_FUNCTION_NAME }}
         run: |
+
+          echo $Version
           aws lambda update-alias \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
           --function-version $Version \
