@@ -74,8 +74,6 @@ jobs:
 
           echo $Version
 
-          echo $((Version))
-
 
       # Update alias
       - name: Update alias
