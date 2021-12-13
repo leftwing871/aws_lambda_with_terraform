@@ -73,10 +73,11 @@ jobs:
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} | jq  '.Version')
 
           echo $Version
+          VersionNumber = $((Version))
 
           aws lambda update-alias \
-          --function-name $env.AWS_LAMBDA_FUNCTION_NAME \
-          --function-version $((Version)) \
+          --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
+          --function-version $VersionNumber \
           --name prod
 
       # Remove a Zip File
