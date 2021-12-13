@@ -72,15 +72,14 @@ jobs:
           Version=$(aws lambda publish-version \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} | jq  '.Version')
 
-          VersionNumber=$((Version))
 
       # Update alias
-      - name: Create a new function version
+      - name: Update alias
         working-directory: ./${{ env.AWS_LAMBDA_FUNCTION_NAME }}
         run: |
           aws lambda update-alias \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
-          --function-version $VersionNumber \
+          --function-version $((Version)) \
           --name prod
 
 
