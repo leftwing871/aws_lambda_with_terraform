@@ -77,10 +77,16 @@ jobs:
 
           echo $alias_name
 
-          if [ $alias_name = "prd" ]; then
-            echo "equal"
+          if [ "prd" == "$alias_name" ]; then
+            aws lambda update-alias \
+            --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
+            --function-version ${Version//[^0-9]} \
+            --name prd
           else
-            echo "not equal"
+            aws lambda create-alias \
+            --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
+            --function-version ${Version//[^0-9]} \
+            --name prd
           fi
 
       # Remove a Zip File
