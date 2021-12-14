@@ -75,6 +75,8 @@ jobs:
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
           --name prd | jq '.Name')
 
+          echo $alias_name
+
           if [ "prd" == $alias_name ]; then
             aws lambda update-alias \
             --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
@@ -86,7 +88,6 @@ jobs:
             --function-version ${Version//[^0-9]} \
             --name prd
           fi
-
 
       # Remove a Zip File
       - name: Remove a Zip File
