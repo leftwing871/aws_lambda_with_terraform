@@ -71,13 +71,25 @@ jobs:
           Version=$(aws lambda publish-version \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} | jq '.Version')
 
-          aws lambda update-alias \
+          alias_name=$(aws lambda get-alias \
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
-          --function-version ${Version//[^0-9]} \
-          --name prod
+          --name prd | jq '.Name')
 
+          if [ "prd" == "$alias_name" ]; then
 
+            aws lambda update-alias \
+            --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
+            --function-version ${Version//[^0-9]} \
+            --name prd
 
+          else
+
+            aws lambda create-alias \
+            --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
+            --function-version ${Version//[^0-9]} \
+            --name prd
+
+          fi
 
 
       # Remove a Zip File
