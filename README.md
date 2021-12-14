@@ -5,3 +5,4 @@
 ### 2. function code는 Github Action으로 push 시 배포합니다.
 ###   배포가 성공하면 새로운 version 을 생성합니다.
 ###   prd alias의 존재를 먼저 확인하고 새로운 버전으로, alias를 생성/수정합니다.
+### 3. 서비스에서는 prd alias를 사용합니다.
