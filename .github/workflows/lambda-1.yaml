@@ -75,9 +75,9 @@ jobs:
           --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
           --name prd | jq '.Name')
 
-          echo $alias_name
-
-          if [ 1 = 1 ]; then
+          echo ${#alias_name}
+          
+          if [ ${#alias_name} > 0 ]; then
             aws lambda update-alias \
             --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
             --function-version ${Version//[^0-9]} \
