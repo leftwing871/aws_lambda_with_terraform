@@ -77,9 +77,9 @@ jobs:
 
           echo $alias_name
 
-          str_prd="prd"
+          str_prd= \"prd"
 
-          if [ $str_prd == $alias_name ]
+          if [[ $str_prd == $alias_name ]];
           then
             aws lambda update-alias \
             --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
