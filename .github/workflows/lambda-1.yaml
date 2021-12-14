@@ -77,7 +77,7 @@ jobs:
 
           echo $alias_name
 
-          if [ "prd" == $alias_name ]; then
+          if [ $alias_name = "prd" ]; then
             echo "equal"
           else
             echo "not equal"
