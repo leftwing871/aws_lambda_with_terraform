@@ -77,7 +77,7 @@ jobs:
 
           echo $alias_name
 
-          if [ "prd" == $alias_name ]; then
+          if [ "prd" = $alias_name ]; then
             aws lambda update-alias \
             --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} \
             --function-version ${Version//[^0-9]} \
